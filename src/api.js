@@ -22,7 +22,7 @@ const getCurrentDay = () => {
 
 //Current day/month/year
 
-const currentYear = new Data().getFullYear();
+const currentYear = new Date().getFullYear();
 const currentMonth = getCurrentMonth();
 const currentDay = getCurrentDay();
 const currnetDate = `${currentYear}-${currentMonth}-${currentDay}`;
@@ -33,4 +33,4 @@ const nextYear = `${currentYear + 1}-${currentMonth}-${currentDay}`;
 
 const popular_games = `games?dates=${lastYear},${currnetDate}&ordering=-rating&page_size=10`;
 
-export const popularGamesURL = () => `${base_url}${popular_Games}`;
+export const popularGamesURL = () => `${base_url}${popular_games}`;
