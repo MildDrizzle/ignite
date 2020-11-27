@@ -1,12 +1,11 @@
 import React from "react";
-//Styling and Animations
+//Styling and Animation
 import styled from "styled-components";
 import { motion } from "framer-motion";
 //Redux
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-//Utils
-import { smallImage } from "./../utli";
+import { smallImage } from "../util";
 //IMAGES
 import playstation from "../img/playstation.svg";
 import steam from "../img/steam.svg";
@@ -20,15 +19,15 @@ import starFull from "../img/star-full.png";
 
 const GameDetail = ({ pathId }) => {
   const history = useHistory();
+
   //Exit Detail
-  const exitDetailHandler = (e) => {
+  const exitDetailHander = (e) => {
     const element = e.target;
     if (element.classList.contains("shadow")) {
       document.body.style.overflow = "auto";
       history.push("/");
     }
   };
-
   //Get Stars
   const getStars = () => {
     const stars = [];
@@ -43,7 +42,7 @@ const GameDetail = ({ pathId }) => {
     return stars;
   };
 
-  //GET PLATFORM IMAGEs
+  //GET PLATFORM IMAGES
   const getPlatform = (platform) => {
     switch (platform) {
       case "PlayStation 4":
@@ -61,15 +60,16 @@ const GameDetail = ({ pathId }) => {
     }
   };
 
+  //Data
   const { screen, game, isLoading } = useSelector((state) => state.detail);
   return (
     <>
       {!isLoading && (
-        <CardShadow className="shadow" onClick={exitDetailHandler}>
+        <CardShadow className="shadow" onClick={exitDetailHander}>
           <Detail layoutId={pathId}>
             <Stats>
               <div className="rating">
-                <motion.h3 layoutid={`title ${pathId}`}>{game.name}</motion.h3>
+                <motion.h3 layoutId={`title ${pathId}`}>{game.name}</motion.h3>
                 <p>Rating: {game.rating}</p>
                 {getStars()}
               </div>
@@ -88,7 +88,7 @@ const GameDetail = ({ pathId }) => {
             </Stats>
             <Media>
               <motion.img
-                layoutid={`image ${pathId}`}
+                layoutId={`image ${pathId}`}
                 src={smallImage(game.background_image, 1280)}
                 alt={game.background_image}
               />
@@ -121,12 +121,15 @@ const CardShadow = styled(motion.div)`
   top: 0;
   left: 0;
   z-index: 5;
+
   &::-webkit-scrollbar {
     width: 0.5rem;
   }
+
   &::-webkit-scrollbar-thumb {
     background-color: #ff7676;
   }
+
   &::-webkit-scrollbar-track {
     background: white;
   }
@@ -139,8 +142,8 @@ const Detail = styled(motion.div)`
   background: white;
   position: absolute;
   left: 10%;
-  z-index: 5;
   color: black;
+  z-index: 10;
   img {
     width: 100%;
   }
@@ -156,11 +159,9 @@ const Stats = styled(motion.div)`
     display: inline;
   }
 `;
-
 const Info = styled(motion.div)`
   text-align: center;
 `;
-
 const Platforms = styled(motion.div)`
   display: flex;
   justify-content: space-evenly;
@@ -179,4 +180,5 @@ const Media = styled(motion.div)`
 const Description = styled(motion.div)`
   margin: 5rem 0rem;
 `;
+
 export default GameDetail;

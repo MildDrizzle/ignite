@@ -14,8 +14,8 @@ const GlobalStyles = createGlobalStyle`
             background-color: darkgrey;
         }
         &::-webkit-scrollbar-track {
-            background:white;
-        }
+    background: white;
+  }
     }
     body{
         font-family: 'Montserrat', sans-serif;
@@ -42,7 +42,11 @@ const GlobalStyles = createGlobalStyle`
         color: #333;
     }
     img{
-        display:block;
+        display: block;
+    }
+    input{
+        font-weight: bold;
+    font-family: "Montserrat", sans-serif;
     }
 `;
 
