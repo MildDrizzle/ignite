@@ -11,19 +11,23 @@ import { loadDetail } from "../actions/detailsAction";
 import { smallImage } from "./../utli";
 
 const Game = ({ name, released, id, image }) => {
+  const stringPathId = id.toString();
   //Load Detail
-
   const dispatch = useDispatch();
   const loadDetailHandler = () => {
     dispatch(loadDetail(id));
     document.body.style.overflow = "hidden";
   };
   return (
-    <StyledGame onClick={loadDetailHandler}>
+    <StyledGame layoutId={stringPathId} onClick={loadDetailHandler}>
       <Link to={`/game/${id}`}>
-        <h3>{name}</h3>
+        <motion.h3 layoutid={`title ${stringPathId}`}>{name}</motion.h3>
         <p>{released}</p>
-        <img src={smallImage(image, 640)} alt={name} />
+        <motion.img
+          layoutid={`image ${stringPathId}`}
+          src={smallImage(image, 640)}
+          alt={name}
+        />
       </Link>
     </StyledGame>
   );
